@@ -1,0 +1,119 @@
+create table membro(
+ id_membro int primary key,
+ nome varchar(50),
+ sexo char,
+ papel varchar(50), 
+ dt_nasc date, 
+ salario numeric not null
+);
+
+create table Tarefa(
+ id_tarefa int primary key,
+ descricao varchar(100),
+ data_inicio date
+);
+
+create table Realiza(
+ id_membro int,
+ id_tarefa int,
+ horas_alocadas int,
+ primary key (id_membro,id_tarefa),
+ foreign key (id_membro) references Membro(id_membro),
+ foreign key (id_tarefa) references Tarefa(id_tarefa)
+);
+
+
+-- Inserção de membros
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (1, 'Ana Carla Barros', 'F', 'analista', null, 3000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (2, 'Manoel Silva', 'M', 'programador', '12/04/1997', 2750);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (3, 'Jéssica dos Santos', 'F', 'gerente', '23/10/1995', 7500);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (4, 'Manoela Garcia', 'F', 'instrutor', '30/07/1996', 5000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (5, 'Manoela Garcia', 'F', 'programador', '10/01/1999', 2750);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (6, 'Jéssica Machado', 'F', 'gerente', '04/01/1990', 10000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (7, 'Noeli Peres', 'F', 'analista', null, 3000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (8, 'Caio Manoel de Barros', 'M', 'programador', '12/04/1997', 2750);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (9, 'Cláudia Freitas', 'F', 'gerente', '23/10/1995', 7500);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (10, 'Emanoel Silva', 'M', 'instrutor', '30/07/1998', 4600);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (11, 'Noel Natalina', 'F', 'programador', '10/01/1999', 2150);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (12, 'Judith Deodora', 'F', 'gerente', '04/01/1960', 12000);
+ 
+ 
+/* Inserção de tarefas 3 e 4 */
+INSERT INTO Tarefa(id_tarefa, descricao, data_inicio)
+ VALUES(3, 'programação web', '10/10/2018');
+INSERT INTO Tarefa(id_tarefa, descricao, data_inicio)
+ VALUES (4, 'design de interfaces', '15/11/2018');
+INSERT INTO Tarefa(id_tarefa) VALUES (5);
+INSERT INTO Tarefa(id_tarefa, descricao) VALUES (6, 'preparação de conferência');
+INSERT INTO Tarefa(id_tarefa, data_inicio) VALUES (7, '21/3/2020');
+ 
+--Inserção da tabela Realiza
+INSERT INTO Realiza(id_membro, id_tarefa, horas_alocadas)
+ VALUES (1, 3, 8);
+INSERT INTO Realiza(id_membro, id_tarefa, horas_alocadas)
+ VALUES (1, 4, 8);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (2,5,20);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (2,3,15);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (3,4,10);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (4,3,10);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (4,5,10);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (5,5,20);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (5,3,15);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (6,4,10);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (6,3,10);
+INSERT INTO Realiza (id_membro, id_tarefa, horas_alocadas)
+ VALUES (6,5,10);
+
+-- atualizar o salário de todos em 150 reais
+update membro
+set salario = salario + 150;
+
+-- atualizar o salario das mulheres em 5%
+update membro
+set salario = 1.5 * salario
+where sexo = 'F';
+
+-- alterar papel do membro 4 para "gerente" e aumente o seu salario em 1000 reais
+
+update membro
+set papel = 'GERENTE', salario = salario + 1000
+where id_membro = 4;
+
+update membro
+set papel = 'gerente'
+where id_membro = 4;
+
+-- coloqueo o valor desconhecido em todas as tarefas com descrição NULL
+
+update tarefa
+set descricao = 'desconhecido'
+where descricao is NULL; 
+
+-- diminuir o salario dos programadores do sexo masculino em 50 reais
+
+update membro
+set salario = salario - 50
+where sexo = 'M' and papel = 'programador';
+
+select * from membro;

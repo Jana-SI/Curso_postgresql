@@ -1,0 +1,9 @@
+-- Mostre a idade de uma pessoa, com precisão de dias, dada a sua data de nascimento
+
+select age('20/05/1993', current_date);
+
+-- mostre o dia, o mes e o ano de um determinada data
+
+select extract(day from date '24/11/1994') as dia,
+    extract(month from date '24/11/1994') as mes,
+    extract(year from date '24/11/1994') as ano;

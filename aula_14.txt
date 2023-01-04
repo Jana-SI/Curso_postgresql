@@ -1,0 +1,207 @@
+DROP table realiza cascade;
+drop table membro;
+drop table tarefa;
+
+CREATE TABLE LABORATORIO(
+	id_lab integer primary key,
+	nome_lab varchar(20),
+	localizacao varchar(20)
+	);
+
+CREATE TABLE USUARIO(
+	id_usuario integer primary key,
+	senha varchar(8),
+	p_nome varchar(15),
+	sobrenome varchar(30),
+	telefone varchar(20),
+	dt_nasc date,
+	especialidade varchar(20)
+	);
+
+CREATE TABLE MAQUINA(
+	id_maquina integer primary key,
+	processador varchar(10),
+	hd varchar(15),
+	ramGB integer,
+	id_lab integer,
+	FOREIGN KEY (id_lab) references LABORATORIO(id_lab) on delete cascade
+	);
+
+CREATE TABLE POSSUI(
+	id_usuario integer,
+	id_maquina integer,
+	PRIMARY KEY (id_usuario, id_maquina),
+	FOREIGN KEY (id_usuario) references USUARIO(id_usuario) on delete cascade,
+	FOREIGN KEY (id_maquina) references MAQUINA(id_maquina) on delete cascade
+	);
+
+/* Início do script de inserção */
+/* Inserção de laboratórios */
+
+INSERT INTO LABORATORIO(id_lab, nome_lab, localizacao) values (11, 'Jacaré', 'UEMS');
+INSERT INTO LABORATORIO(id_lab, nome_lab, localizacao) values (12, 'Flamingo', 'UEMS');
+INSERT INTO LABORATORIO(id_lab, nome_lab, localizacao) values (13, 'Frajola', 'UFMS');
+INSERT INTO LABORATORIO(id_lab, nome_lab, localizacao) values (14, 'Penélope', 'IFMS');
+INSERT INTO LABORATORIO(id_lab, nome_lab, localizacao) values (15, 'Jerry', 'UEMS');
+
+/* Inserção dos usuários */
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (10, '1234', 'Manoel', 'Silva', '67 2435-2323', '12/06/1988', 'médico');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (20, 'abcd', 'Manoela', 'Rocha Santos', '18 3221-1721', '10/07/1990', 'professora');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (30, '4321', 'Noeli', 'Carvalho Silva', '55 2718-2321', '01/02/1995', 'professor');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (40, '5555', 'Noel', 'Souza Silva Santos', '67 3354-8794', '01/01/1985', 'balconista');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (50, 'asbd', 'Maria', 'Leal da Silva', '19 3458-8914', '01/01/1984', 'professora');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (60, 'i_u1', 'Emanoel', 'Melo Prado', '88 6545-4563', '02/04/1990', 'secretário');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (70, '5612', 'Jacira', 'Solberg', '17 3242-5341', '05/10/1979', 'advogada');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (80, '1212', 'Sebastião', 'Freitas', '57 2356-4518', '10/03/1980', 'mecânico');
+
+INSERT INTO USUARIO(id_usuario, senha, p_nome, sobrenome, telefone, dt_nasc, especialidade) values (90, '1245', 'Murilo', 'Pires Alcides', '16 4521-4520', '05/10/1979', 'escrivão');
+
+/* Inserção das máquinas */
+
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (1, 'i3', '500GB', 4, 11);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (2, 'i3', '500GB', 4, 11);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (3, 'i3', '500GB', 4, 11);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (4, 'i3', '500GB', 4, 11);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (5, 'i3', '500GB', 4, 11);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (6, 'i5', '500GB', 6, 11);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (7, 'i5', '500GB', 6, 11);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (8, 'i5', '500GB', 6, 11);
+
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (9, 'i7', '250GB', 8, 12);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (10, 'i3', '500GB', 8, 12);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (11, 'i7', '500GB', 8, 12);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (12, 'i7', '500GB', 16, 12);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (13, 'i7', '500GB', 16, 12);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (14, 'i7', '500GB', 16, 12);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (15, 'i5', '500GB', 6, 12);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (16, 'i5', '500GB', 6, 12);
+
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (17, 'i3', '500GB', 4, 13);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (18, 'i7', '500GB', 4, 13);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (19, 'i3', '500GB', 4, 13);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (20, 'i3', '500GB', 4, 13);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (21, 'i3', '500GB', 4, 13);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (22, 'i7', '500GB', 6, 13);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (23, 'i5', '500GB', 6, 13);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (24, 'i5', '500GB', 6, 13);
+
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (25, 'i3', '500GB', 4, 14);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (26, 'i7', '500GB', 4, 14);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (27, 'i3', '500GB', 4, 14);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (28, 'i3', '500GB', 4, 14);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (29, 'i3', '500GB', 4, 14);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (30, 'i7', '500GB', 6, 14);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (31, 'i5', '500GB', 6, 14);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (32, 'i5', '500GB', 6, 14);
+
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (33, 'i3', '500GB', 4, 15);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (34, 'i7', '500GB', 4, 15);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (35, 'i3', '500GB', 4, 15);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (36, 'i3', '500GB', 4, 15);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (37, 'i3', '500GB', 4, 15);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (38, 'i7', '500GB', 6, 15);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (39, 'i5', '500GB', 6, 15);
+INSERT INTO MAQUINA(id_maquina, processador, hd, ramGB, id_lab) values (40, 'i5', '500GB', 6, 15);
+
+/* Inserção da tabela POSSUI (usuario, maquina) */
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 1);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 2);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 3);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 4);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 15);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 13);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 10);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 9);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 6);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (10, 7);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 11);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 12);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 13);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 14);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 15);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 16);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 17);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 19);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 26);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (20, 27);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (30, 1);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (30, 2);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (30, 3);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (30, 4);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (30, 15);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (40, 10);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (40, 11);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (40, 9);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (40, 6);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (40, 37);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (50, 11);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (50, 21);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (50, 30);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (50, 34);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (50, 35);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (50, 33);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (50, 40);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (60, 9);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (60, 6);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (60, 7);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (60, 19);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (60, 20);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (60, 21);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (70, 9);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (70, 6);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (70, 7);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (70, 19);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (80, 19);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (80, 16);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (80, 7);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (80, 9);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (80, 20);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (80, 25);
+
+INSERT INTO POSSUI(id_usuario, id_maquina) values (90, 9);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (90, 6);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (90, 7);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (90, 19);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (90, 20);
+INSERT INTO POSSUI(id_usuario, id_maquina) values (90, 21);
+
+-- Junção Interna de Dados em Detalhes (INNER JOIN) --
+
+/*Ex 01 - Liste as informações dos computadores que possuem processador i7 com mais de 4GB de RAM e os nomes e locais dos laboratórios em que eles se encontram*/
+
+SELECT m.*, l.nome_lab, l.localizacao 
+FROM maquina m, laboratorio l 
+WHERE m.id_lab = l.id_lab and processador = 'i7' and ramgb > 4;
+
+SELECT m.*, l.* 
+FROM maquina m JOIN laboratorio l 
+ON m.id_lab = l.id_lab 
+WHERE processador = 'i7' and ramgb > 4;
+
+/*Ex 02 - Liste os nomes e sobrenomes dos usuários que usam computadores i7*/
+
+SELECT u.p_nome, u.sobrenome, m.*
+FROM usuario u, possui p, maquina m
+WHERE u.id_usuario = p.id_usuario 
+and p.id_maquina = m.id_maquina 
+and processador = 'i7';
+
+SELECT u.p_nome, u.sobrenome, m.*
+FROM usuario u JOIN possui p ON u.id_usuario = p.id_usuario
+JOIN maquina m ON p.id_maquina = m.id_maquina
+WHERE processador = 'i7';

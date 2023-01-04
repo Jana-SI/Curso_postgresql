@@ -1,0 +1,20 @@
+-- Laços de Repetição While (Enquanto)
+
+CREATE OR REPLACE FUNCTION fatorial(n integer) RETURNS integer AS
+$$
+DECLARE
+    fat integer := 1;
+    i integer := 2;
+BEGIN
+    while(i <= n) loop
+        fat := fat*i;
+        i := i + 1;
+    end loop;
+    return fat;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT fatorial(5);
+SELECT fatorial(1);
+SELECT fatorial(2);
+SELECT fatorial(3);

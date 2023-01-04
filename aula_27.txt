@@ -1,0 +1,55 @@
+CREATE TABLE DEPARTAMENTO (
+ nro_depto INTEGER, 
+ nome_depto VARCHAR(20),
+ PRIMARY KEY (nro_depto)
+ );
+ 
+CREATE TABLE EMPREGADO (
+ cod_emp INTEGER, 
+ p_nome VARCHAR(15) NOT NULL, 
+ sobrenome VARCHAR(30), 
+ dt_niver DATE, 
+ end_emp VARCHAR(50),
+ sexo CHAR, 
+ salario NUMERIC, 
+ cod_supervisor INTEGER NOT NULL,
+ nro_depto INTEGER NOT NULL,
+ PRIMARY KEY (cod_emp),
+ FOREIGN KEY (cod_supervisor) REFERENCES EMPREGADO(cod_emp) ON DELETE CASCADE,
+ FOREIGN KEY (nro_depto) REFERENCES DEPARTAMENTO(nro_depto) ON DELETE CASCADE
+ );
+ 
+/* INSERÇÃO DE DADOS NAS TABELAS */
+INSERT INTO DEPARTAMENTO(nro_depto, nome_depto) VALUES (1, 'Papaleguas');
+INSERT INTO DEPARTAMENTO(nro_depto, nome_depto) VALUES (2, 'Frajola');
+INSERT INTO DEPARTAMENTO(nro_depto, nome_depto) VALUES (3, 'Piu Piu');
+
+INSERT INTO EMPREGADO (cod_emp, p_nome, sobrenome, dt_niver, end_emp, sexo, salario, cod_supervisor, nro_depto) VALUES (1, 'Carla', 'Perez', '12-12-1988', 'Rua X, 123', 'F', 20000.50, 1, 1);
+INSERT INTO EMPREGADO (cod_emp, p_nome, sobrenome, dt_niver, end_emp, sexo, salario, cod_supervisor, nro_depto) VALUES (2, 'Carlos', 'Magno', '12-05-1978', 'Rua X, 200', 'M', 1500, 1, 1);
+INSERT INTO EMPREGADO (cod_emp, p_nome, sobrenome, dt_niver, end_emp, sexo, salario, cod_supervisor, nro_depto) VALUES (3, 'João', 'Silva', '07/02/1990', 'Rua Y, 200', 'M', 2730.83, 1, 2);
+
+-- Iterando Tupla por Tupla por Meio de Comandos FOR
+/* crie uma função que imprime os codigos e os nomes dos funcionarios */
+
+CREATE OR REPLACE FUNCTION mostraFuncionarios() RETURNS void
+AS $$
+DECLARE 
+    tupla record;
+    cont integer := 1;
+BEGIN
+
+    FOR tupla in
+
+        SELECT * FROM empregado ORDER BY cod_emp
+
+    loop
+
+        raise notice 'Funcionario %- Codigo: % | Nome: % %', cont, tupla.cod_emp, tupla.p_nome, tupla.sobrenome;
+
+        cont := cont + 1;
+
+    END loop;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT mostraFuncionarios();

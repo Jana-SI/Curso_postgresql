@@ -1,0 +1,23 @@
+-- Comandos Condicionais (IF THEN ELSIF ELSE)
+
+CREATE OR REPLACE FUNCTION maisQueMedia(IN cod numeric) RETURNS BOOLEAN
+as
+$$
+DECLARE
+    media real;
+    salario_prof real;
+BEGIN
+
+    SELECT avg(salario) FROM professor INTO media;
+    SELECT salario FROM professor WHERE id = cod INTO salario_prof;
+
+    IF(salario_prof > media) THEN
+        return True;
+    ELSE
+        return False;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM maisQueMedia(1);
+SELECT * FROM maisQueMedia(4);

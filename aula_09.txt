@@ -1,0 +1,11 @@
+--atualização de tabelas--
+update membro
+set papel = 'gerente', salario = 5000
+where id_membro = 1
+
+update membro
+set salario = salario * 1.1
+where papel = 'programador'
+
+update membro
+set salario = salario * 1.1

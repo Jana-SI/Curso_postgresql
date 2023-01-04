@@ -1,0 +1,54 @@
+create table membro(
+ id_membro int primary key,
+ nome varchar(50),
+ sexo char,
+ papel varchar(50), 
+ dt_nasc date, 
+ salario numeric not null
+);
+
+-- Inserção de membro 1
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (1, 'Ana Carla Barros', 'F', 'analista', null, 3000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (2, 'Manoel Silva', 'M', 'programador', '12/04/1997', 2750);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (3, 'Jéssica dos Santos', 'F', 'gerente', '23/10/1995', 7500);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (4, 'Manoela Garcia', 'F', 'instrutor', '30/07/1996', 5000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (5, 'Manoela Garcia', 'F', 'programador', '10/01/1999', 2750);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (6, 'Jéssica Machado', 'F', 'gerente', '04/01/1990', 10000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (7, 'Noeli Peres', 'F', 'analista', null, 3000);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (8, 'Caio Manoel de Barros', 'M', 'programador', '12/04/1997', 2750);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (9, 'Cláudia Freitas', 'F', 'gerente', '23/10/1995', 7500);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (10, 'Emanoel Silva', 'M', 'instrutor', '30/07/1998', 4600);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (11, 'Noel Natalino', 'F', 'programador', '10/01/1999', 2150);
+INSERT INTO Membro (id_membro, nome, sexo, papel, dt_nasc, salario)
+ VALUES (12, 'Judith Deodora', 'F', 'gerente', '04/01/1960', 12000);
+ 
+ -- A cláusula ORDER BY --
+
+/* 1) Liste os nomes e os salários dos membros, ordenando pelo salário, em ordem crescente. */
+
+SELECT nome, salario
+FROM membro
+ORDER BY salario ASC
+
+/* 2) Liste os nomes e os salários dos membros, ordenando pelo salário em ordem decrescente.*/
+
+SELECT nome, salario
+FROM membro
+ORDER BY salario DESC
+
+/* 3) Liste os nomes e os slários dos membros, ordenando pelo nome em ordem crescente, e depois pelo salário em ordem decrescente.*/
+
+SELECT nome, salario
+FROM membro
+ORDER BY nome ASC, salario DESC

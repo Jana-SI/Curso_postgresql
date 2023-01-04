@@ -1,0 +1,4 @@
+-- remover tabelas --
+drop table Realiza;
+drop table Membro;
+drop table Tarefa;

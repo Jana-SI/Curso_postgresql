@@ -1,0 +1,31 @@
+CREATE TABLE Produto(
+    cod_prod INT PRIMARY KEY,
+    descricao VARCHAR(50) UNIQUE,
+    qtde_disponivel INT NOT NULL DEFAULT 0
+);
+
+INSERT INTO Produto VALUES (1, 'Feijão', 10);
+INSERT INTO Produto VALUES (2, 'Arroz', 5);
+INSERT INTO Produto VALUES (3, 'Macarrão', 15);
+INSERT INTO Produto VALUES (4, 'Farinha', 25);
+INSERT INTO Produto VALUES (5, 'Fubá', 7);
+INSERT INTO Produto VALUES (6, 'Achocolatado', 10);
+INSERT INTO Produto VALUES (7, 'Sal', 15);
+INSERT INTO Produto VALUES (8, 'Açúcar', 10);
+INSERT INTO Produto VALUES (9, 'Óleo', 30);
+
+create or replace function listagem_produtos(prod_cursor refcursor) returns refcursor
+as
+$$
+Begin
+    open prod_cursor for select * from produto;
+    return prod_cursor; 
+end;
+$$ language plpgsql;
+
+select listagem_produtos('cursor_prod');
+fetch first in cursor_prod;
+fetch absolute 4 in cursor_prod;
+fetch relative 4 in cursor_prod;
+
+select * from produto;

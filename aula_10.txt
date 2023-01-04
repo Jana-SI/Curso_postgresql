@@ -1,0 +1,67 @@
+DROP table departamento cascade;
+drop table membro;
+
+create table Departamento(
+    cod_depto int primary key,
+    nome_depto varchar(50)
+);
+
+create table Membro(
+    id_membro int primary key,
+    cod_depto int, 
+    nome varchar(50),
+    sexo char,
+    papel varchar(50), 
+    dt_nasc date, 
+    salario numeric not null,
+    --foreign key (cod_depto) REFERENCES Departamento(cod_depto) ON DELETE RESTRICT ON UPDATE CASCADE
+    foreign key (cod_depto) REFERENCES Departamento(cod_depto) ON DELETE set NULL ON UPDATE RESTRICT
+);
+
+--Inserção de departamentos
+INSERT INTO Departamento (cod_depto, nome_depto) VALUES (1, 'Intermidia');
+INSERT INTO Departamento (cod_depto, nome_depto) VALUES (2, 'Sistemas Web');
+INSERT INTO Departamento (cod_depto, nome_depto) VALUES (3, 'Mobile');
+INSERT INTO Departamento (cod_depto, nome_depto) VALUES (4, 'Inteligência Artificial');
+INSERT INTO Departamento (cod_depto, nome_depto) VALUES (5, 'Desktop');
+
+-- Inserção de membros
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (1, 1, 'Ana Carla Barros', 'F', 'analista', null, 3000);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (2, 2, 'Manoel Silva', 'M', 'programador', '12/04/1997', 2750);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (3, 3, 'Jéssica dos Santos', 'F', 'gerente', '23/10/1995', 7500);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (4, 4, 'Manoela Garcia', 'F', 'instrutor', '30/07/1996', 5000);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (5, 1, 'Manoela Garcia', 'F', 'programador', '10/01/1999', 2750);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (6, 2, 'Jéssica Machado', 'F', 'gerente', '04/01/1990', 10000);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (7, 3, 'Noeli Peres', 'F', 'analista', null, 3000);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (8, 4, 'Caio Manoel de Barros', 'M', 'programador', '12/04/1997', 2750);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (9, 1, 'Cláudia Freitas', 'F', 'gerente', '23/10/1995', 7500);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (10, 2, 'Emanoel Silva', 'M', 'instrutor', '30/07/1998', 4600);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (11, 3, 'Noel Natalina', 'F', 'programador', '10/01/1999', 2150);
+INSERT INTO Membro (id_membro, cod_depto, nome, sexo, papel, dt_nasc, salario)
+ VALUES (12, 4, 'Judith Deodora', 'F', 'gerente', '04/01/1960', 12000);
+
+DELETE FROM departamento WHERE cod_depto = 5;
+
+DELETE FROM membro WHERE cod_depto = 1;
+DELETE FROM departamento WHERE cod_depto = 1;
+
+UPDATE departamento set cod_depto = 5 WHERE cod_depto = 2;
+
+DELETE FROM departamento WHERE cod_depto = 2;
+
+UPDATE membro set cod_depto = 10 WHERE cod_depto = 4;
+UPDATE departamento set cod_depto = 10 WHERE cod_depto = 4;
+
+SELECT * FROM membro;
+SELECT * FROM departamento;

@@ -1,0 +1,8 @@
+--  Busca de Dados de Tabelas --
+SELECT * FROM id_membro;
+
+SELECT * FROM membro where lower(papel) = 'analista';
+
+SELECT nome FROM membro where lower(papel) = 'analista';
+
+SELECT nome, id_membro FROM membro where lower(papel) = 'analista';

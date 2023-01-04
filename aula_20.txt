@@ -1,0 +1,31 @@
+-- Introdução às Funções e Procedimentos - Função Olá, mundo! (Hello, World) --
+
+CREATE FUNCTION olaMundo() RETURNS varchar as
+$$
+BEGIN
+    return 'Olá, Mundo!';
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION olaMundo() RETURNS varchar as
+$$
+DECLARE
+    msg varchar := 'Olá, mundo!';
+BEGIN
+    return msg;
+END;
+$$
+LANGUAGE plpgsql;
+
+SELECT olaMundo();
+
+CREATE OR REPLACE FUNCTION olaMundo(msg varchar) RETURNS varchar as
+$$
+BEGIN
+    return msg;
+END;
+$$
+LANGUAGE plpgsql;
+
+SELECT olaMundo('Olá, Programador!');

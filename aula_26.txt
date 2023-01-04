@@ -1,0 +1,23 @@
+-- Laços de Repetição FOR (Para)
+
+CREATE OR REPLACE FUNCTION fatorial(n integer) RETURNS integer AS
+$$
+DECLARE
+    i integer;
+    fat integer := 1;
+BEGIN
+    IF(n < 2) THEN
+        return fat;
+    END IF;
+
+    FOR i in 2..n loop
+        fat := fat * i;
+    END loop;
+
+    return fat;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT fatorial(1);
+SELECT fatorial(2);
+SELECT fatorial(5);

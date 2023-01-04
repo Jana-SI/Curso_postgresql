@@ -1,0 +1,19 @@
+create table professor(
+    id integer primary key,
+    nome varchar (100),
+    dt_nasc date,
+    salario numeric
+);
+
+create or replace function adicionaProfessor(id integer, nome varchar, dt_nasc date, salario numeric)
+returns void as
+$$
+BEGIN
+    -- inserir os dados na tabela professor
+    insert into professor values (id, nome, dt_nasc, salario);
+END;
+$$ LANGUAGE plpgsql;
+
+select adicionaProfessor(1, 'Janaina', '20/05/1993', 3000);
+
+select * from professor;

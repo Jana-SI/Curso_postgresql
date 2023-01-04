@@ -1,0 +1,9 @@
+-- remoção de tuplas/ remover dados específicos de uma tabela  --
+delete from realiza where id_tarefa = 3;
+delete from Tarefa where descricao = 'programação web';
+
+delete from Tarefa where upper(descricao) = 'DESIGN DE INTERFACES';
+delete from realiza where id_tarefa = 4
+
+delete from Tarefa where  descricao is null and data_inicio is null;
+delete from realiza where id_tarefa = 5

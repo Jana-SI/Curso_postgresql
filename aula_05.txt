@@ -1,0 +1,4 @@
+-- Remover todos os dados da tabela --
+delete from Realiza;
+delete from Membro;
+delete from Tarefa;
